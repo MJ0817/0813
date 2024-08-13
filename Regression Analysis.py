@@ -1,4 +1,4 @@
-
+import matplotlib.pyplot as plt
 # 회귀분석은 변수 간의 관계를 모델링휴ㅏ고 예측하는 통계적 기법
 # 종류: 선형회귀, 비선형회귀
 
@@ -35,7 +35,18 @@ print(acc)
 
 df_Y_test = pd.DataFrame(Y_test)
 df_Y_pred_binary = pd.DataFrame(y_pred_binary)
-df_Y_test.to_csv("./results/y_test.csv")
-df_Y_pred_binary.to_csv("./results/y_pred.csv")
+# df_Y_test.to_csv("./results/y_test.csv")
+# df_Y_pred_binary.to_csv("./results/y_pred.csv")
+#결과(모델 예측값 VS 실제값) 시각화
 
-# print(X_train.shape, X_test.shape, Y_train.shape, Y_test.shape)
+plt.figure(figsize=(10,6))
+plt.scatter(range(len(Y_test)), Y_test, color='blue', label='Actual Values', marker='o')
+plt.scatter(range(len(y_pred_binary)), y_pred_binary, color='red', label='Predicted Values', marker='x')
+plt.show()
+
+plt.title("Comparison of Actual and Predicted values")
+plt.xlabel("Index")
+plt.ylabel('Class(0 or 1)')
+plt.legend()
+plt.show()
+plt.savefig('./result/scatter.png')
